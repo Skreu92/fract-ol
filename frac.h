@@ -13,8 +13,9 @@
 #ifndef FRAC_H
 # define FRAC_H
 #include "libft/libft.h"
-#include "minlibx/mlx.h"
-#include <math.h>
+# include "minlibx/mlx.h"
+# include <math.h>
+# include <fcntl.h>
 
 
 # define MAP_WIDTH 2000
@@ -25,52 +26,61 @@
 # define COULEUR [0x000000, 0xFF0000, 0x00FF00, 0x0000FF]
 # define ABS(x) ((x > 0) ? (x) : (-x))
 
-typedef struct s_tuple
+typedef struct	s_coord
 {
-	float x;
-	float y;
-}				t_tuple;
+	double	x;
+	double	y;
+}				t_coord;
 
-typedef struct s_complex
-{
-	float real;
-	float imag;
-}				t_complex;
-
-typedef struct s_color
-{
-	char rgb[4];
-}				t_color;
-
-typedef struct s_img
-{
-	void *img;
-	char *data;
-	int bpp;
-	int endian;
-	int size_line;
-}				t_img;
-
-typedef struct s_env
+typedef struct	s_fract
 {
 	void		*mlx;
 	void		*win;
-	t_img		*img;
-	t_tuple		*center;
-	t_complex	*pas;
-	int iteration;
-}				t_env;
+	void		*img;
 
+	char		*arg;
 
-t_color put_rgb(char r, char g, char b);
-void put_color_to_img(t_img *img, int x, int y, t_color rgb);
-int go_to_px(t_env *e, t_complex *center, int x, int y, t_complex *complex);
-void init(void);
-void ft_error_arg(void);
-void ft_error_malloc(void);
-void go_fractol(t_env *e);
-float power2(float x);
-t_color go_color(int i, float d);
-float module(t_complex z);
+	int			len;
+	int			wid;
+
+	t_coord		r;
+	t_coord		mv;
+
+	double		addx;
+	double		addy;
+
+	double		zoom;
+	t_coord		zm;
+
+	int			imax;
+	int			i;
+
+	int			col;
+
+	double		x1;
+	double		x2;
+	double		y1;
+	double		y2;
+
+	int			help;
+
+	int			*add;
+	int			*bpp;
+	int			*bpl;
+	int			*end;
+}				t_fract;
+
+int		init(t_fract *f, char *argv);
+int		init_fract(t_fract *f);
+int		mlx_pixel_image(int x, int y, int i, t_fract *f);
+int		error_usage(void);
+int		put_details(t_fract *f);
+int		put_details_2(t_fract *f);
+int		init_key(int keycode, void *param);
+int		init_mouse(int but, int x, int y, void *param);
+void		julia(t_fract *f);
+void		mandelbrot(t_fract *f);
+void		dragonbrot(t_fract *f);
+
 
 #endif
