@@ -55,7 +55,10 @@ int		init_mouse(int but, int x, int y, void *param)
 		if (but == 4 || but == 5)
 			mousezoom(but, x, y, f);
 		if (but == 1)
+		{
 			mouseswitch(f);
+			init_fract(f);
+		}
 	}
 	f->r.x = fabs(f->wid - (f->wid * f->zoom)) + f->mv.x * f->zoom;
 	f->r.y = fabs(f->len - (f->len * f->zoom)) + f->mv.y * f->zoom;

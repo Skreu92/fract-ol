@@ -76,7 +76,6 @@ int		init_key(int keycode, void *param)
 	t_fract *f;
 
 	f = (t_fract*)param;
-	printf("key%d\n", keycode);
 	mlx_clear_window(f->mlx, f->win);
 	mlx_destroy_image(f->mlx, f->img);
 	f->img = mlx_new_image(f->mlx, 1280, 720);

@@ -71,7 +71,6 @@ int		init(t_fract *f, char *argv)
 		mlx_mouse_hook(f->win, init_mouse, f);
 		mlx_expose_hook(f->win, expose_hook, f);
 		mlx_hook(f->win, 6, 6, att_coord_mouse, f);
-		mlx_hook(f->win, 17, 17, leave_window, f);
 		mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 		if (f->help == 1)
 			put_details(f);
