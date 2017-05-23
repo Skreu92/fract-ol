@@ -6,7 +6,7 @@
 #    By: Etienne <etranchi@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/21 19:06:47 by Etienne           #+#    #+#              #
-#    Updated: 2017/05/23 14:37:47 by etranchi         ###   ########.fr        #
+#    Updated: 2017/05/23 15:53:18 by etranchi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC= dragon.c\
 		burningship.c\
 		julia2.c\
 		julia3.c\
+		duo.c\
 
 NAME = fractol
 CC = gcc

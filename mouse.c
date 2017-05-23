@@ -75,3 +75,10 @@ int		check_arg_enter(char *argv)
 	return (0);
 }
 
+int expose_hook(t_fract *f)
+{
+	init_fract(f);
+	init(f, f->arg);
+	return (0);
+}
+

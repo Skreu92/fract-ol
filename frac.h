@@ -70,6 +70,8 @@ typedef struct	s_fract
 	int			*end;
 }				t_fract;
 
+int				expose_hook(t_fract *f);
+int				go_duo(char *str1, char *str2);
 int				check_arg_enter(char *argv);
 int 			check_arg_enter(char *argv);
 int				leave_window(void);

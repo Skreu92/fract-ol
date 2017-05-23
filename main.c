@@ -69,6 +69,7 @@ int		init(t_fract *f, char *argv)
 		launch_frac(f, argv);
 		mlx_key_hook(f->win, init_key, f);
 		mlx_mouse_hook(f->win, init_mouse, f);
+		mlx_expose_hook(f->win, expose_hook, f);
 		mlx_hook(f->win, 6, 6, att_coord_mouse, f);
 		mlx_hook(f->win, 17, 17, leave_window, f);
 		mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
@@ -91,7 +92,6 @@ int		main(int argc, char **argv)
 	f = NULL;
 	if (argc == 2 && check_arg_enter(argv[1]))
 	{
-		printf("coucoa\n");
 		if (!(f = (t_fract*)ft_memalloc(sizeof(t_fract))))
 			return (-1);
 		f->bpp = (int*)ft_memalloc(sizeof(int));
@@ -105,6 +105,10 @@ int		main(int argc, char **argv)
 		f->add = (int*)mlx_get_data_addr(f->img, f->bpp, f->bpl, f->end);
 		init_fract(f);
 		init(f, argv[1]);
+	}
+	else if (argc == 3 && check_arg_enter(argv[1]) && check_arg_enter(argv[2]))
+	{
+		go_duo(argv[1], argv[2]);
 	}
 	else
 		error_usage();

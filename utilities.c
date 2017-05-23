@@ -38,12 +38,12 @@ int		put_details_2(t_fract *f)
 
 	tmp[0] = ft_itoa(f->zoom);
 	tmp[1] = ft_itoa(f->imax);
-	mlx_string_put(f->mlx, f->win, 10, 10, 0xFFFFFF, "Change Zoom : + or -");
-	mlx_string_put(f->mlx, f->win, 10, 30, 0xFFFFFF, "Iteration : PU or PD");
-	mlx_string_put(f->mlx, f->win, 10, 50, 0xFFFFFF, "Reset : x");
-	mlx_string_put(f->mlx, f->win, 10, 70, 0xFFFFFF, "Move :  u / d / l / r");
+	mlx_string_put(f->mlx, f->win, 10, 10, 0xFFFFFF, "Change Zoom  : + or -");
+	mlx_string_put(f->mlx, f->win, 10, 30, 0xFFFFFF, "Iteration    : PU or PD");
+	mlx_string_put(f->mlx, f->win, 10, 50, 0xFFFFFF, "Reset        : x");
+	mlx_string_put(f->mlx, f->win, 10, 70, 0xFFFFFF, "Move         : u / d / l / r");
 	mlx_string_put(f->mlx, f->win, 10, 90, 0xFFFFFF, "Change color : * or /");
-	mlx_string_put(f->mlx, f->win, 10, 110, 0xFFFFFF, "Quit : ESC");
+	mlx_string_put(f->mlx, f->win, 10, 110, 0xFFFFFF, "Quit         : ESC");
 	ft_memdel((void**)&tmp[1]);
 	ft_memdel((void**)&tmp);
 	return (0);
@@ -58,7 +58,7 @@ int		put_details(t_fract *f)
 	while (y < 150)
 	{
 		x = 0;
-		while (x < 280)
+		while (x < 320)
 		{
 			if (y != 64 || x != 279)
 				mlx_pixel_put(f->mlx, f->win, x, y, 0xAAFFFFFF);
