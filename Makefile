@@ -6,7 +6,7 @@
 #    By: Etienne <etranchi@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/21 19:06:47 by Etienne           #+#    #+#              #
-#    Updated: 2017/05/21 19:06:49 by Etienne          ###   ########.fr        #
+#    Updated: 2017/05/23 14:37:47 by etranchi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC= dragon.c\
 		mandelbrot.c\
 		mouse.c\
 		utilities.c\
+		burningship.c\
+		julia2.c\
+		julia3.c\
 
 NAME = fractol
 CC = gcc
@@ -32,6 +35,7 @@ MLX = -L minlibx/ -lmlx
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@make -C libft/ fclean
 	@make -C libft/
 	@$(CC)  $(FLAGS) $(FRAME) $(INC) -o $(NAME) $(OBJ) $(FT) $(MLX)
 

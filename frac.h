@@ -12,11 +12,11 @@
 
 #ifndef FRAC_H
 # define FRAC_H
-#include "libft/libft.h"
+# include "libft/libft.h"
 # include "minlibx/mlx.h"
 # include <math.h>
 # include <fcntl.h>
-
+# include <stdio.h>
 
 # define MAP_WIDTH 2000
 # define MAP_HEIGHT 1000
@@ -70,17 +70,23 @@ typedef struct	s_fract
 	int			*end;
 }				t_fract;
 
-int		init(t_fract *f, char *argv);
-int		init_fract(t_fract *f);
-int		mlx_pixel_image(int x, int y, int i, t_fract *f);
-int		error_usage(void);
-int		put_details(t_fract *f);
-int		put_details_2(t_fract *f);
-int		init_key(int keycode, void *param);
-int		init_mouse(int but, int x, int y, void *param);
-void		julia(t_fract *f);
-void		mandelbrot(t_fract *f);
-void		dragonbrot(t_fract *f);
-
+int				check_arg_enter(char *argv);
+int 			check_arg_enter(char *argv);
+int				leave_window(void);
+int				init(t_fract *f, char *argv);
+int				init_fract(t_fract *f);
+int				mlx_pixel_image(int x, int y, int i, t_fract *f);
+int				error_usage(void);
+int				put_details(t_fract *f);
+int				put_details_2(t_fract *f);
+int				init_key(int keycode, void *param);
+int				init_mouse(int but, int x, int y, void *param);
+void			julia(t_fract *f);
+void			mandelbrot(t_fract *f);
+void			dragonbrot(t_fract *f);
+void			burningship(t_fract *f);
+void			julia2(t_fract *f);
+void			julia3(t_fract *f);
+void			launch_frac(t_fract *f, char *argv);
 
 #endif

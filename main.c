@@ -62,15 +62,11 @@ int		init_fract(t_fract *f)
 int		init(t_fract *f, char *argv)
 {
 	if (!(ft_strcmp(argv, "-j") && ft_strcmp(argv, "-m")
-		&& ft_strcmp(argv, "-d")))
+		&& ft_strcmp(argv, "-d") && ft_strcmp(argv, "-b")
+		&& ft_strcmp(argv, "-j2")
+		&& ft_strcmp(argv, "-j3")))
 	{
-		f->arg = argv;
-		if (ft_strcmp(argv, "-j") == 0)
-			julia(f);
-		if (ft_strcmp(argv, "-m") == 0)
-			mandelbrot(f);
-		if (ft_strcmp(argv, "-d") == 0)
-			dragonbrot(f);
+		launch_frac(f, argv);
 		mlx_key_hook(f->win, init_key, f);
 		mlx_mouse_hook(f->win, init_mouse, f);
 		mlx_hook(f->win, 6, 6, att_coord_mouse, f);
@@ -79,10 +75,13 @@ int		init(t_fract *f, char *argv)
 		if (f->help == 1)
 			put_details(f);
 		mlx_loop(f->mlx);
+		return (1);
 	}
 	else
+	{
 		error_usage();
-	return (0);
+		return (0);
+	}
 }
 
 int		main(int argc, char **argv)
@@ -90,8 +89,9 @@ int		main(int argc, char **argv)
 	t_fract *f;
 
 	f = NULL;
-	if (argc == 2 && argv[1])
+	if (argc == 2 && check_arg_enter(argv[1]))
 	{
+		printf("coucoa\n");
 		if (!(f = (t_fract*)ft_memalloc(sizeof(t_fract))))
 			return (-1);
 		f->bpp = (int*)ft_memalloc(sizeof(int));

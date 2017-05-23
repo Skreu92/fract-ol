@@ -27,6 +27,12 @@ int		keymove(int keycode, t_fract *f)
 
 int		keyzoom(int keycode, t_fract *f)
 {
+	if (keycode == 7)
+	{
+		init_fract(f);
+		init(f, f->arg);
+		return (0);
+	}
 	if (keycode == 69 && f->zoom * 1.10 < 2148473647)
 		f->zoom = f->zoom * 1.10;
 	if (keycode == 78)
@@ -52,9 +58,9 @@ int		keycolor(int keycode, t_fract *f)
 	if (keycode == 75 || keycode == 67)
 	{
 		if (keycode == 75)
-			f->col = f->col + 0xFF * 0xFF;
+			f->col = f->col * 1 + 0xFFFFFF / 4;
 		if (keycode == 67)
-			f->col = f->col - 0xFF * 0xFF;
+			f->col = f->col * 1 + 0xFFFFFF / 4;
 		if (f->col < 0)
 			f->col = 0x00FFFFFF;
 		if (f->col > 0x00FFFFFF)
@@ -70,6 +76,7 @@ int		init_key(int keycode, void *param)
 	t_fract *f;
 
 	f = (t_fract*)param;
+	printf("key%d\n", keycode);
 	mlx_clear_window(f->mlx, f->win);
 	mlx_destroy_image(f->mlx, f->img);
 	f->img = mlx_new_image(f->mlx, 1280, 720);
@@ -77,7 +84,7 @@ int		init_key(int keycode, void *param)
 		exit(-1);
 	if (keycode >= 123 && keycode <= 126)
 		keymove(keycode, f);
-	if (keycode == 69 || keycode == 78)
+	if (keycode == 69 || keycode == 78 || keycode == 7)
 		keyzoom(keycode, f);
 	if (keycode == 116 || keycode == 121)
 		keyimax(keycode, f);

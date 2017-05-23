@@ -32,6 +32,12 @@ int		mouseswitch(t_fract *f)
 	else if (ft_strcmp(f->arg, "-m") == 0)
 		f->arg = "-d";
 	else if (ft_strcmp(f->arg, "-d") == 0)
+		f->arg = "-b";
+	else if (ft_strcmp(f->arg, "-b") == 0)
+		f->arg = "-j2";
+	else if (ft_strcmp(f->arg, "-j2") == 0)
+		f->arg = "-j3";
+	else if (ft_strcmp(f->arg, "-j3") == 0)
 		f->arg = "-j";
 	return (0);
 }
@@ -41,7 +47,7 @@ int		init_mouse(int but, int x, int y, void *param)
 	t_fract	*f;
 
 	f = (t_fract*)param;
-	if (x >= 0 && x <= f->wid && y >= 0 && y <= f->len)
+	if (x > 0 && x < f->wid && y > 0 && y < f->len)
 	{
 		mlx_clear_window(f->mlx, f->win);
 		mlx_destroy_image(f->mlx, f->img);
@@ -51,10 +57,21 @@ int		init_mouse(int but, int x, int y, void *param)
 		if (but == 1)
 			mouseswitch(f);
 	}
-	f->r.x = fabs(f->wid / 2 - (f->wid / 2 * f->zoom)) + f->mv.x * f->zoom;
-	f->r.y = fabs(f->len / 2 - (f->len / 2 * f->zoom)) + f->mv.y * f->zoom;
+	f->r.x = fabs(f->wid - (f->wid * f->zoom)) + f->mv.x * f->zoom;
+	f->r.y = fabs(f->len - (f->len * f->zoom)) + f->mv.y * f->zoom;
 	f->zm.x = (f->wid * f->zoom) / (f->x2 - f->x1);
 	f->zm.y = (f->len * f->zoom) / (f->y2 - f->y1);
 	init(f, f->arg);
 	return (0);
 }
+
+int		check_arg_enter(char *argv)
+{
+	if ( ft_strcmp(argv, "-j")  == 0 || ft_strcmp(argv, "-m") == 0
+		|| ft_strcmp(argv, "-d") == 0 || ft_strcmp(argv, "-b") == 0
+		|| ft_strcmp(argv, "-j2") == 0
+		|| ft_strcmp(argv, "-j3") == 0)
+		return (1);
+	return (0);
+}
+
